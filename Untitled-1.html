@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rumah Tempat Kumpulnya Cinta | Ungkapan Kasih Si Bungsu</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-cream': '#fdfbf7',
+                        'warm-sand': '#f4efe6',
+                        'earth-dark': '#2b2020',
+                        'dusty-rose': '#c87d85',
+                        'dusty-rose-dark': '#a65b63',
+                        'soft-gold': '#d4af37',
+                        'warm-gray': '#6b5e5e'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                        cursive: ['Alex Brush', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fdfbf7;
+            color: #2b2020;
+            overflow-x: hidden;
+        }
+
+        .font-serif {
+            font-family: 'Merriweather', serif;
+        }
+
+        .font-cursive {
+            font-family: 'Alex Brush', cursive;
+        }
+
+        /* Glassmorphism styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(200, 125, 133, 0.18);
+            box-shadow: 0 10px 30px -5px rgba(43, 32, 32, 0.05);
+        }
+
+        .glass-dark {
+            background: rgba(43, 32, 32, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Floating background particles */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatUp 12s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.6;
+            }
+            80% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Smooth reveal animation */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fdfbf7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c87d85;
+            border-radius: 999px;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen text-earth-dark selection:bg-dusty-rose selection:text-white">
+
+    <div id="particles-container" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <div class="fixed top-5 right-5 z-50">
+        <div class="glass-card px-4 py-2.5 rounded-full flex items-center gap-3 shadow-lg border border-white/80 transition-all hover:scale-105">
+            <button id="bgm-btn" onclick="toggleBGM()" class="w-9 h-9 rounded-full bg-dusty-rose hover:bg-dusty-rose-dark text-white flex items-center justify-center shadow-md transition-all active:scale-95">
+                <i id="bgm-icon" class="fas fa-play text-xs pl-0.5"></i>
+            </button>
+            <div class="text-xs pr-1">
+                <p class="font-semibold text-earth-dark leading-tight">ABBA - Slipping Through My Fingers</p>
+                <p id="bgm-status" class="text-warm-gray text-[10px]">Klik untuk putar musik 🎵</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Player (ABBA - Slipping Through My Fingers instrumental/song) -->
+    <audio id="bgm-audio" loop preload="auto">
+        <source src="c:\iseng\Slipping Through My Fingers.mp3">
+    </audio>
+
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 py-10 relative z-10 space-y-24">
+
+        <section class="text-center pt-12 md:pt-16 space-y-8 min-h-[75vh] flex flex-col items-center justify-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-dusty-rose/10 text-dusty-rose-dark text-xs font-medium tracking-wider uppercase border border-dusty-rose/20">
+                <i class="fas fa-heart text-[10px]"></i> Unconditional Love & Memories
+            </div>
+
+            <div class="space-y-4 max-w-2xl">
+                <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-earth-dark leading-tight">
+                    Rumah Tempat Kumpulnya Cinta
+                </h1>
+                <p class="font-cursive text-3xl sm:text-4xl text-dusty-rose">
+                    Ungkapan kasih dari si bungsu untuk Mama dan Mbak ku tercinta
+                </p>
+            </div>
+
+            <p class="text-sm sm:text-base text-warm-gray max-w-xl mx-auto font-light leading-relaxed">
+                Di tengah alurnya waktu, aku bersyukur tumbuh menjadi adik bontot yang selalu diberikan rasa cinta yang tulus. Website kecil ini adalah cermin rasa terima kasihku untuk setiap detik kebersamaan kita.
+            </p>
+
+            <div class="pt-6">
+                <a href="#memoria" class="inline-flex items-center gap-3 px-8 py-3.5 bg-earth-dark text-warm-cream rounded-full font-medium text-sm shadow-xl hover:bg-dusty-rose transition-all duration-300 hover:-translate-y-1">
+                    <span>Jelajahi Kenangan Kita</span>
+                    <i class="fas fa-arrow-down text-xs"></i>
+                </a>
+            </div>
+        </section>
+
+        <section class="reveal-on-scroll">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden text-center border-l-4 border-l-dusty-rose">
+                <div class="absolute -top-12 -right-12 w-40 h-40 bg-dusty-rose/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="space-y-6 relative z-10 max-w-2xl mx-auto">
+                    <div class="w-12 h-12 rounded-full bg-dusty-rose/10 text-dusty-rose flex items-center justify-center mx-auto text-xl">
+                        <i class="fas fa-cross"></i>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <span class="text-xs uppercase tracking-widest text-warm-gray font-semibold">In Loving Memory</span>
+                        <h2 class="font-serif text-2xl sm:text-3xl text-earth-dark font-bold">Our beloved papa</h2>
+                        <p class="text-xs text-dusty-rose italic">23 April 1965 – 31 Oktober 2014</p>
+                    </div>
+
+                    <p class="font-serif italic text-sm sm:text-base text-warm-gray leading-relaxed">
+                        "papa tidak pernah benar-benar pergi. papa selalu ada di setiap helai doa, di dalam senyuman mama, serta di dalam fondasi cinta dan kebaikan yang papa tinggalkan untuk kita semua."
+                    </p>
+
+                    <div class="pt-2 flex justify-center">
+                        <span class="h-0.5 w-16 bg-dusty-rose/40 rounded-full"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Story Card 1 (Baju Ungu Apel) -->
+                <div class="glass-card rounded-3xl overflow-hidden group hover:shadow-xl transition-all duration-500 reveal-on-scroll">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-warm-sand">
+                        <img src="c:\iseng\foto 2.jpeg" 
+                             alt="Masa Kecil Penuh Kehangatan" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                             onerror="this.onerror=null; this.src='f67f366b-2c3c-4a03-93f9-531b34dd4457.jpeg';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-earth-dark/60 via-transparent to-transparent opacity-60"></div>
+                        <span class="absolute bottom-4 left-4 text-xs font-medium text-white/90 bg-earth-dark/40 px-3 py-1 rounded-full backdrop-blur-md">
+                            Masa Kecil Bersama
+                        </span>
+                    </div>
+                    <div class="p-6 space-y-2">
+                        <h3 class="font-serif font-bold text-lg text-earth-dark">Pelukan Terhangat </h3>
+                        <p class="text-xs sm:text-sm text-warm-gray leading-relaxed">
+                            Sejak kecil, berada di tengah-tengah Mama, Papa, dan Mbak-Mbak adalah tempat paling aman dan membahagiakan untukku.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Story Card 2 (Masa Kecil Gunung Bromo) -->
+                <div class="glass-card rounded-3xl overflow-hidden group hover:shadow-xl transition-all duration-500 reveal-on-scroll">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-warm-sand">
+                        <img src="c:\iseng\foto 3.jpg" 
+                             alt="endless love" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                             onerror="this.onerror=null; this.src='69778818-b4a1-4be7-a921-a6f5c22e5adf.jpeg';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-earth-dark/60 via-transparent to-transparent opacity-60"></div>
+                        <span class="absolute bottom-4 left-4 text-xs font-medium text-white/90 bg-earth-dark/40 px-3 py-1 rounded-full backdrop-blur-md">
+                            Petualangan Masa Lalu
+                        </span>
+                    </div>
+                    <div class="p-6 space-y-2">
+                        <h3 class="font-serif font-bold text-lg text-earth-dark">Langkah & Indahnya Memori</h3>
+                        <p class="text-xs sm:text-sm text-warm-gray leading-relaxed">
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Story Card 3 (Ziarah Makam Bapak) -->
+                <div class="glass-card rounded-3xl overflow-hidden group hover:shadow-xl transition-all duration-500 reveal-on-scroll">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-warm-sand">
+                        <img src="foto 4.jpg" 
+                             alt="Ziarah Makam Bapak" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                             onerror="this.onerror=null; this.src='afb66209-0515-4229-8629-471630db479f.jpg';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-earth-dark/60 via-transparent to-transparent opacity-60"></div>
+                        <span class="absolute bottom-4 left-4 text-xs font-medium text-white/90 bg-earth-dark/40 px-3 py-1 rounded-full backdrop-blur-md">
+                            Cinta Yang Abadi
+                        </span>
+                    </div>
+                    <div class="p-6 space-y-2">
+                        <h3 class="font-serif font-bold text-lg text-earth-dark">Rumah Baru Papa</h3>
+                        <p class="text-xs sm:text-sm text-warm-gray leading-relaxed">
+                            miss you pa
+                    </div>
+                </div>
+
+                <!-- Story Card 4 (Di thailand) -->
+                <div class="glass-card rounded-3xl overflow-hidden group hover:shadow-xl transition-all duration-500 reveal-on-scroll">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-warm-sand">
+                        <img src="foto 7.jpg" 
+                             alt="Kebersamaan Hari Ini" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                             onerror="this.onerror=null; this.src='15eae52e-449e-4112-8465-5c7efd582cad.jpeg';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-earth-dark/60 via-transparent to-transparent opacity-60"></div>
+                        <span class="absolute bottom-4 left-4 text-xs font-medium text-white/90 bg-earth-dark/40 px-3 py-1 rounded-full backdrop-blur-md">
+                            Hari Ini & Nanti
+                        </span>
+                    </div>
+                    <div class="p-6 space-y-2">
+                        <h3 class="font-serif font-bold text-lg text-earth-dark">Jalan Pulang Kita Selalu Sama</h3>
+                        <p class="text-xs sm:text-sm text-warm-gray leading-relaxed">
+                            Sejauh mana pun kita melangkah dan mengejar mimpi, jalan pulang terbaik kita adalah kembali ke dalam pelukan Mama.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="reveal-on-scroll">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 space-y-8 relative">
+                <div class="text-center space-y-2">
+                    <span class="text-3xl">💌</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-earth-dark font-bold">Surat Tulus Dari Si Bungsu</h2>
+                    <p class="text-xs sm:text-sm text-warm-gray">Klik tombol di bawah untuk membuka pesan penuh kasih dariku.</p>
+                </div>
+
+                <div class="text-center">
+                    <button id="letter-toggle-btn" onclick="toggleLetter()" class="px-8 py-3.5 bg-dusty-rose hover:bg-dusty-rose-dark text-white font-medium rounded-full shadow-md transition-all duration-300 hover:scale-105 active:scale-95 text-sm inline-flex items-center gap-2">
+                        <i class="fas fa-envelope-open-text"></i>
+                        <span>Buka Surat Ini</span>
+                    </button>
+                </div>
+
+                <div id="letter-box" class="hidden bg-white/90 p-6 sm:p-10 rounded-2xl border border-dusty-rose/20 space-y-6 shadow-inner transition-all duration-500">
+                    <div class="border-b border-dusty-rose/20 pb-4 flex justify-between items-center">
+                        <span class="font-cursive text-3xl text-dusty-rose font-bold">Untuk Ibu & Mbak-Mbakku Tersayang,</span>
+                        <i class="fas fa-heart text-dusty-rose text-sm"></i>
+                    </div>
+
+                    <div class="space-y-4 text-sm sm:text-base leading-relaxed text-earth-dark/90 font-light">
+                        <p>
+                            <strong>Untuk Mama:</strong><br>
+                            Terima kasih telah menjadi tiang paling kokoh di dalam hidup kita. Makasih ma sudah kuat sejauh ini membesarkan kita semua. Dari sejak kita kecil yang selalu minta dipeluk hingga kita tumbuh sebesar ini, kasih sayang dan doa mama tidak pernah surut sedikit pun. mama adalah pahlawanku, tempatku mengadu, dan alasan utama aku selalu ingin memberikan yang terbaik.
+                        </p>
+                        <p>
+                            <strong>Untuk Mbak-Mbakku:</strong><br>
+                            Terima kasih sudah menjadi sosok kakak perempuan yang luar biasa membimbing, merawat, dan sabar menjaga adik mu ini. Kehadiran Mbak-Mbak membuat hidupku selalu berwarna dan penuh perlindungan.
+                        </p>
+                        <p>
+                            Meskipun sekarang kita memiliki kesibukan dan cerita perjalanan masing-masing, ingatlah bahwa aku selalu sayang kalian.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-dusty-rose/20 text-right">
+                        <p class="font-cursive text-3xl text-dusty-rose font-bold">Aku Sayang Kalian Semua ❤️</p>
+                        <p class="text-xs text-warm-gray mt-1 font-sans">— Dari Si Bungsu</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal-on-scroll">
+            <div class="glass-dark text-warm-cream rounded-3xl p-8 sm:p-10 text-center space-y-6">
+                <div class="space-y-2">
+                    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-warm-cream">Kirim Doa Singkat Untuk Keluarga</h3>
+                    <p class="text-xs sm:text-sm text-warm-cream/70 max-w-md mx-auto">Sentuh tombol di bawah untuk memberikan senyuman dan taburan kebahagiaan.</p>
+                </div>
+
+                <button onclick="sendLove()" class="px-8 py-3.5 bg-dusty-rose hover:bg-dusty-rose-dark text-white font-medium rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm inline-flex items-center gap-2">
+                    <i class="fas fa-sparkles"></i>
+                    <span>Tebar Cinta & Doa ✨</span>
+                </button>
+            </div>
+        </section>
+
+        <footer class="text-center text-xs text-warm-gray pt-8 pb-4 space-y-2 border-t border-dusty-rose/10">
+            <p class="font-serif italic">"Keluarga adalah karya seni terindah yang dilukis oleh Tuhan."</p>
+            <p class="text-[11px] text-warm-gray/60">Dibuat dengan segenap cinta oleh Si Bungsu 💖</p>
+        </footer>
+
+    </div>
+
+    <script>
+        /* 1. Generate Floating Background Particles */
+        function initParticles() {
+            const container = document.getElementById('particles-container');
+            const items = ['✨', '🌸', '🤍', '💖', '🕊️'];
+            
+            for (let i = 0; i < 18; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.innerText = items[Math.floor(Math.random() * items.length)];
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDuration = `${8 + Math.random() * 8}s`;
+                particle.style.animationDelay = `${Math.random() * 6}s`;
+                particle.style.fontSize = `${14 + Math.random() * 16}px`;
+                container.appendChild(particle);
+            }
+        }
+        initParticles();
+
+        /* 2. Scroll Reveal Observer */
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        /* 3. Audio Player Control */
+        let isPlaying = false;
+        function toggleBGM() {
+            const audio = document.getElementById('bgm-audio');
+            const icon = document.getElementById('bgm-icon');
+            const status = document.getElementById('bgm-status');
+
+            if (!isPlaying) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    icon.className = 'fas fa-pause text-xs';
+                    status.innerText = 'Memutar nada syahdu... ✨';
+                }).catch(err => {
+                    console.log('Audio playback prevented by browser policy.');
+                });
+            } else {
+                audio.pause();
+                isPlaying = false;
+                icon.className = 'fas fa-play text-xs pl-0.5';
+                status.innerText = 'Klik untuk putar musik 🎵';
+            }
+        }
+
+        /* 4. Letter Toggle */
+        function toggleLetter() {
+            const letterBox = document.getElementById('letter-box');
+            const btn = document.getElementById('letter-toggle-btn');
+
+            if (letterBox.classList.contains('hidden')) {
+                letterBox.classList.remove('hidden');
+                btn.innerHTML = `<i class="fas fa-envelope text-xs"></i> <span>Tutup Surat</span>`;
+                
+                confetti({
+                    particleCount: 50,
+                    spread: 60,
+                    origin: { y: 0.7 },
+                    colors: ['#c87d85', '#d4af37', '#2b2020']
+                });
+            } else {
+                letterBox.classList.add('hidden');
+                btn.innerHTML = `<i class="fas fa-envelope-open-text text-xs"></i> <span>Buka Surat Ini</span>`;
+            }
+        }
+
+        /* 5. Interactive Love / Doa Burst */
+        function sendLove() {
+            const end = Date.now() + (2 * 1000);
+            const colors = ['#c87d85', '#fdfbf7', '#d4af37'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 4,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 4,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+        }
+    </script>
+</body>
+</html>
